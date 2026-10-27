@@ -1,0 +1,65 @@
+{
+  "gui_version": "1.2",
+  "workflow_name": "power_dose",
+  "nodes": [
+    {
+      "id": "static_file-1793091471068",
+      "data": {
+        "label": "testing_powder_container.json",
+        "params": {
+          "type": "dlr.static_file",
+          "provider_bpn": "BPNLM67H9AVUVPTD",
+          "provider_url": "https://vision-x-api.base-x-ecosystem.org/connectors/dlr-rox-conn/cp/protocol",
+          "asset_id": "ed1dc7ed-ea80-4021-9957-fc5984fef0b6"
+        }
+      },
+      "position": {
+        "x": -106.87785598478024,
+        "y": -69.64358539719419
+      }
+    },
+    {
+      "id": "save_to_file-1793091477092",
+      "data": {
+        "label": "Save as a File",
+        "params": {
+          "type": "save_to_file",
+          "file_path": "container.zip"
+        }
+      },
+      "position": {
+        "x": 137.09525476604028,
+        "y": -69.80333935258062
+      }
+    },
+    {
+      "id": "unzipper-1793091485740",
+      "data": {
+        "label": "unzipper",
+        "params": {
+          "type": "unzipper",
+          "target_zip": "container.zip",
+          "extract_directory": "container_spec"
+        }
+      },
+      "position": {
+        "x": 384.12442880304394,
+        "y": -68.80333935258062
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "static_file-1793091471068",
+      "target": "save_to_file-1793091477092",
+      "sourceHandle": "output_0",
+      "targetHandle": "input_0"
+    },
+    {
+      "source": "save_to_file-1793091477092",
+      "target": "unzipper-1793091485740",
+      "sourceHandle": "dep",
+      "targetHandle": "dep"
+    }
+  ]
+}
